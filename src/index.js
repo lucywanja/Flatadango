@@ -39,21 +39,26 @@ document.addEventListener('DOMContentLoaded', () => {
         movieShowtime.textContent = `Showtime: ${movie.showtime}`;
         movieRuntime.textContent = `${movie.runtime} mins`;
         movieDescription.textContent = movie.description; // Display movie description
-        document.getElementById('ticket-num').textContent = `${availableTickets} remaining tickets`;
+        document.getElementById('ticket-num').textContent = `${availableTickets}`;
 
-        // Buy ticket button click
-        document.getElementById('buy-ticket').addEventListener('click', () => {
-            console.log(availableTickets)
-            console.log(document.getElementById('ticket-num').textContent.split(' '))
-            let ticketNumber = document.getElementById('ticket-num').textContent.split(' ')
-            if (ticketNumber[0] > 0) {
-                document.getElementById('ticket-num').textContent = `${ticketNumber[0] - 1} remaining tickets`;
-            } else {
-                alert("Tickets sold out");
-            }
-        });
+        
+      
     }
 
+    // Buy ticket button click
+    document.getElementById('buy-ticket').addEventListener('click', () => {
+        //console.log(availableTickets)
+        console.log(document.getElementById('ticket-num').textContent.split(' '))
+        let ticketNumber = document.getElementById('ticket-num').textContent.split(' ')
+        let newTicketValue = parseInt(ticketNumber[0]) - 1
+        if (parseInt(ticketNumber[0]) > 0) {
+            document.getElementById('ticket-num').textContent = newTicketValue;
+        } else {
+            alert("Tickets sold out");
+        }
+    });
+
+    
     // Function for populating the films menu
     function populateFilmsMenu(movie) {
         const filmsMenu = document.getElementById('films');
